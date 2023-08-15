@@ -32,6 +32,7 @@ require "paq" {
 	'lewis6991/gitsigns.nvim', -- git gutter signs
 	'famiu/bufdelete.nvim', -- Buffer delete without screwing up window layout
 	'numtostr/FTerm.nvim', -- floating terminal
+    'github/copilot.vim' -- github copilot
 }
 
 -- misc editor settings
