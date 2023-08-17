@@ -32,7 +32,8 @@ require "paq" {
 	'lewis6991/gitsigns.nvim', -- git gutter signs
 	'famiu/bufdelete.nvim', -- Buffer delete without screwing up window layout
 	'numtostr/FTerm.nvim', -- floating terminal
-    'github/copilot.vim' -- github copilot
+    'github/copilot.vim', -- github copilot
+    'lukas-reineke/indent-blankline.nvim', -- indent lines
 }
 
 -- misc editor settings
