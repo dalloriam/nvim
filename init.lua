@@ -3,75 +3,12 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
--- For keybinds
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend('force', options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- dependencies
-require "paq" {
-	"savq/paq-nvim",
-    "catppuccin/nvim",
-	"nvim-lua/plenary.nvim", -- telescope dependency
-	"nvim-telescope/telescope.nvim", -- fuzzy finding & file switcher
-	'kosayoda/nvim-lightbulb', -- display a lightbulb when code actions are available
-	'neovim/nvim-lspconfig', -- LSP helper
-	'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
-	'hrsh7th/nvim-compe', -- LSP autocompletion
-	'tamton-aquib/staline.nvim',
-	'kyazdani42/nvim-web-devicons', -- file icons
-	'ms-jpq/chadtree', -- file tree
-	'rust-lang/rust.vim', -- rust tools
-	'nvim-lua/lsp_extensions.nvim', -- inlay hints for rust
-	'jiangmiao/auto-pairs', -- auto-close bracket pairs
-	'romgrk/barbar.nvim', -- tab bar
-	'sbdchd/neoformat', -- non-rust auto-formatting (mainly for clang-format)
-	'NoahTheDuke/vim-just', -- casey/just support
-	'lewis6991/gitsigns.nvim', -- git gutter signs
-	'famiu/bufdelete.nvim', -- Buffer delete without screwing up window layout
-	'numtostr/FTerm.nvim', -- floating terminal
-    'github/copilot.vim', -- github copilot
-    'lukas-reineke/indent-blankline.nvim', -- indent lines
-}
+require('deps') -- has to be loaded first
 
--- misc editor settings
-opt.relativenumber = true
-opt.number = true
-opt.termguicolors = true
-opt.startofline = false
-opt.ignorecase = true
-opt.smartcase = true -- Do not ignore case with capitals
-opt.smartindent = true -- Auto-indent
-opt.sidescroll=1
-opt.sidescrolloff=3
-opt.tabstop=4
-opt.shiftwidth=4
-opt.expandtab=true
-
--- color scheme
-require("catppuccin").setup({
-    flavour = "latte",
-    background = {
-        light = "latte",
-        dark = "mocha",
-    },
-})
-vim.cmd.colorscheme "catppuccin-latte"
-
-
--- cursor columns
-opt.cursorcolumn = false
-opt.cursorline = true
-
--- status line
-opt.laststatus=2
-opt.showtabline=2
-
--- mouse config
-opt.mouse = "a" -- mouse in all modes
-opt.mousemodel = "popup_setpos" -- use right-click as a menu
+require('keybind')
+require('editor')
+require('colorscheme')
 
 -- autoformat
 cmd 'augroup fmt'
@@ -198,29 +135,3 @@ require('staline').setup{}
 -- floating terminal
 require('FTerm').setup{}
 
--- keybinds
-g.mapleader = ','
-
--- telescope
-map('n', '<C-p>', '<cmd>Telescope find_files<cr>')
-map('n', '<C-f>', '<cmd>Telescope live_grep<cr>')
-map('n', '<C-b>', '<cmd>Telescope lsp_definitions<cr>')
-
--- tab controls
-map('n', 'gt', '<cmd>BufferNext<cr>')
-map('n', 'gT', '<cmd>BufferPrevious<cr>')
-
--- buffers
-map('n', '<C-w>', '<cmd>Bdelete<cr>')
-map('n', '<C-l>', '<cmd>winc l<cr>')
-map('n', '<C-h>', '<cmd>winc h<cr>')
-map('n', '<C-j>', '<cmd>winc j<cr>')
-map('n', '<C-k>', '<cmd>winc k<cr>')
-
--- terminal mode
-map('t', '<Esc>', '<C-\\><C-n>')
-map('n', '<leader>t', '<cmd>lua require(\'FTerm\').toggle()<cr>')
-
--- misc
-map('n', '<C-n>', '<cmd>CHADopen<cr>') -- toggle CHADtree
-map('n', '<leader><Space>', '<cmd>noh<cr>') -- clear search highlights
