@@ -17,7 +17,7 @@ cmd 'augroup fmt'
 cmd 'augroup END'
 
 -- rust
--- g.rustfmt_autosave = 1 -- Format on save
+g.rustfmt_autosave = 1 -- Format on save
 require'lsp_extensions'.inlay_hints{
 	highlight = "Comment",
 	prefix = " > ",
