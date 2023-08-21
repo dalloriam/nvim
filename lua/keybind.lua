@@ -23,6 +23,11 @@ map('n', '<C-h>', '<cmd>winc h<cr>') -- move to left window
 map('n', '<C-j>', '<cmd>winc j<cr>') -- move to bottom window
 map('n', '<C-k>', '<cmd>winc k<cr>') -- move to top window
 
+-- yank
+map('n', '<leader>y', '"+y') -- copy to clipboard
+map('v', '<leader>y', '"+y') -- copy to clipboard
+map('v', '<leader>Y', '"+Y') -- copy to clipboard
+
 -- terminal mode
 map('t', '<Esc>', '<C-\\><C-n>') -- exit terminal mode
 map('n', '<leader>t', '<cmd>lua require(\'FTerm\').toggle()<cr>') -- Open terminal
