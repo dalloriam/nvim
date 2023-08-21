@@ -143,6 +143,7 @@ require('staline').setup{}
 -- floating terminal
 require('FTerm').setup{}
 
--- paren surround
 require('nvim-surround').setup{}
+
+require('neogit').setup{}
 

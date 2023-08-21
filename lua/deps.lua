@@ -23,5 +23,7 @@ require "paq" {
 	'numtostr/FTerm.nvim', -- floating terminal
     'github/copilot.vim', -- github copilot
     'lukas-reineke/indent-blankline.nvim', -- indent lines
-    'kylechui/nvim-surround' -- surround
+    'kylechui/nvim-surround', -- surround
+    'NeogitOrg/neogit',
+    'sindrets/diffview.nvim'
 }
