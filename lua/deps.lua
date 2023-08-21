@@ -4,6 +4,8 @@ require "paq" {
 	"nvim-lua/plenary.nvim", -- telescope dependency
 	"nvim-telescope/telescope.nvim", -- fuzzy finding & file switcher
 	'kosayoda/nvim-lightbulb', -- display a lightbulb when code actions are available
+    'williamboman/mason.nvim', -- LSP Installer
+    "williamboman/mason-lspconfig.nvim",
 	'neovim/nvim-lspconfig', -- LSP helper
 	'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
 	'hrsh7th/nvim-compe', -- LSP autocompletion

@@ -34,12 +34,20 @@ local ts = require 'nvim-treesitter.configs'
 ts.setup {ensure_installed = "all", highlight = {enable = true}, sync_install = false}
 
 -- LSP
+require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "clangd", "denols", "gopls", "tsserver", "svelte"},
+}
+
 local lsp = require('lspconfig')
 lsp.rust_analyzer.setup{}
 lsp.clangd.setup{
     single_file_support = false
 }
 lsp.pyright.setup{}
+lsp.svelte.setup{}
+lsp.denols.setup{}
+lsp.tsserver.setup{}
 
 -- nvim-compe (autocomplete)
 vim.o.completeopt = "menuone,noselect"
