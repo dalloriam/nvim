@@ -12,3 +12,5 @@ if os.getenv('theme') == 'dark' then
 else
     vim.o.background = 'light'
 end
+
+require('staline').setup{}

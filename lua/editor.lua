@@ -11,6 +11,7 @@ vim.opt.cursorline = true -- Highlight the current line
 -- Search
 vim.opt.ignorecase = true -- Ignore case when searching
 vim.opt.smartcase = true -- Do not ignore case with capitals
+vim.opt.incsearch = true -- Incremental search
 
 -- Formatting
 vim.opt.tabstop=4 -- Tab size

@@ -1,6 +1,11 @@
 require "paq" {
 	"savq/paq-nvim",
-    "catppuccin/nvim",
+    {
+        "catppuccin/nvim", 
+        run = function ()
+            vim.cmd('colorscheme catppuccin-latte')
+        end
+    },
 	"nvim-lua/plenary.nvim", -- telescope dependency
 	"nvim-telescope/telescope.nvim", -- fuzzy finding & file switcher
 	'kosayoda/nvim-lightbulb', -- display a lightbulb when code actions are available
@@ -24,6 +29,7 @@ require "paq" {
     'github/copilot.vim', -- github copilot
     'lukas-reineke/indent-blankline.nvim', -- indent lines
     'kylechui/nvim-surround', -- surround
-    'NeogitOrg/neogit',
-    'sindrets/diffview.nvim'
+    'NeogitOrg/neogit', -- git
+    'sindrets/diffview.nvim', -- git diffs
+    'theprimeagen/harpoon' -- file management
 }

@@ -5,7 +5,7 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ',' -- set leader key to comma
+vim.g.mapleader = ' ' -- set leader key to comma
 
 -- telescope
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>') -- find files
@@ -32,6 +32,9 @@ map('v', '<leader>Y', '"+Y') -- copy to clipboard
 map('t', '<Esc>', '<C-\\><C-n>') -- exit terminal mode
 map('n', '<leader>t', '<cmd>lua require(\'FTerm\').toggle()<cr>') -- Open terminal
 
+-- git
+map('n', '<leader>gs', '<cmd>Neogit kind=auto<cr>') -- git status
+
 -- misc
 map('n', '<C-n>', '<cmd>CHADopen<cr>') -- toggle CHADtree
-map('n', '<leader><Space>', '<cmd>noh<cr>') -- clear search highlights
+map('n', ',<leader>', '<cmd>noh<cr>') -- clear search highlights
