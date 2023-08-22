@@ -30,7 +30,6 @@ map('v', '<leader>Y', '"+Y') -- copy to clipboard
 
 -- terminal mode
 map('t', '<Esc>', '<C-\\><C-n>') -- exit terminal mode
-map('n', '<leader>t', '<cmd>lua require(\'FTerm\').toggle()<cr>') -- Open terminal
 
 -- git
 map('n', '<leader>gs', '<cmd>Neogit kind=auto<cr>') -- git status

@@ -1,14 +1,12 @@
-require('deps') -- has to be loaded first
-require('keybind')
-require('editor')
-require('languages')
+require('dalloriam.deps') -- has to be loaded first
+require('dalloriam.keybind')
+require('dalloriam.editor')
+require('dalloriam.languages')
 
 -- git
 require 'gitsigns'.setup{}
 
 -- floating terminal
-require('FTerm').setup{}
-
 require('nvim-surround').setup{}
 
 require('neogit').setup{}

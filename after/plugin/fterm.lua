@@ -1,0 +1,15 @@
+local fterm = require('FTerm')
+fterm.setup{}
+
+-- Just task runner support
+function run_just(opts)
+    fterm.scratch({cmd = {"just", opts.args}, auto_close = true})
+end
+
+-- Create a command that runs a given just task
+vim.api.nvim_create_user_command('Just', run_just, {nargs = 1})
+
+-- Terminal Keymaps
+vim.keymap.set("n", "<leader>t", function() fterm.toggle() end) -- Open/Close terminal
+vim.keymap.set("n", "<leader>b", function() run_just({args = "build"}) end) -- Build
+
