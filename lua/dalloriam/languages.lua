@@ -27,6 +27,7 @@ lsp.pyright.setup{}
 lsp.svelte.setup{}
 lsp.denols.setup{}
 lsp.tsserver.setup{}
+lsp.gopls.setup{}
 
 -- nvim-compe (autocomplete)
 vim.o.completeopt = "menuone,noselect"
