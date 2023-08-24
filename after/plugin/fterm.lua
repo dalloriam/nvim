@@ -11,5 +11,4 @@ vim.api.nvim_create_user_command('Just', run_just, {nargs = "+"})
 
 -- Terminal Keymaps
 vim.keymap.set("n", "<leader>t", function() fterm.toggle() end) -- Open/Close terminal
-vim.keymap.set("n", "<leader>b", function() run_just({fargs = {"build"}}) end) -- Build
 
