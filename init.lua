@@ -11,3 +11,5 @@ require('nvim-surround').setup{}
 
 require('neogit').setup{}
 
+require('buck').setup{}
+
