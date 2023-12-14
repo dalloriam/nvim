@@ -2,7 +2,7 @@ require "paq" {
 	"savq/paq-nvim",
     {
         "catppuccin/nvim", 
-        run = function ()
+        build = function ()
             vim.cmd('colorscheme catppuccin-latte')
         end
     },
