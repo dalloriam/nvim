@@ -5,12 +5,19 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ' ' -- set leader key to comma
+vim.g.mapleader = ' ' -- set leader key to spacebar
 
 -- telescope
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>') -- find files
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>') -- find in files
 map('n', '<C-b>', '<cmd>Telescope lsp_definitions<cr>') -- go to definition
+
+-- trouble (diagnostics)
+map('n', '<leader>xx', '<cmd>Trouble cascade toggle<cr>') -- toggle trouble
+map('n', '<leader>xX', '<cmd>Trouble cascade toggle filter.buf=0<cr>') -- toggle trouble (current buffer only)
+map('n', '<leader>cs', '<cmd>Trouble symwide toggle focus=false<cr>') -- Symbols
+map('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>') -- Location List
+map('n', '<leader>xq', '<cmd>Trouble qflist toggle<cr>') -- Quickfix List
 
 -- tab controls
 map('n', 'gt', '<cmd>BufferNext<cr>') -- next tab

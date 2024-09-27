@@ -2,9 +2,6 @@ require "paq" {
 	"savq/paq-nvim",
     {
         "catppuccin/nvim", 
-        build = function ()
-            vim.cmd('colorscheme catppuccin-latte')
-        end
     },
 	"nvim-lua/plenary.nvim", -- telescope dependency
 	"nvim-telescope/telescope.nvim", -- fuzzy finding & file switcher
@@ -31,5 +28,10 @@ require "paq" {
     'kylechui/nvim-surround', -- surround
     'NeogitOrg/neogit', -- git
     'sindrets/diffview.nvim', -- git diffs
-    'theprimeagen/harpoon' -- file management
+    'theprimeagen/harpoon', -- file management
+    'folke/trouble.nvim', -- error lens
+    {
+        'kepano/flexoki-neovim', 
+        as = 'flexoki',
+    } -- theme
 }

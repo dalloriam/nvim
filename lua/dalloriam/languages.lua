@@ -15,7 +15,7 @@ ts.setup {ensure_installed = "all", highlight = {enable = true}, sync_install = 
 -- LSP
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "clangd", "denols", "gopls", "tsserver", "svelte"},
+    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "clangd", "denols", "gopls", "ts_ls", "svelte"},
 }
 
 local lsp = require('lspconfig')
@@ -26,7 +26,7 @@ lsp.clangd.setup{
 lsp.pyright.setup{}
 lsp.svelte.setup{}
 lsp.denols.setup{}
-lsp.tsserver.setup{}
+lsp.ts_ls.setup{}
 lsp.gopls.setup{}
 
 -- nvim-compe (autocomplete)
