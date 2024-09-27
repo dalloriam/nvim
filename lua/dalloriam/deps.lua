@@ -10,7 +10,7 @@ require "paq" {
     "williamboman/mason-lspconfig.nvim",
 	'neovim/nvim-lspconfig', -- LSP helper
 	'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
-	'hrsh7th/nvim-compe', -- LSP autocompletion
+	'hrsh7th/nvim-cmp', -- LSP autocompletion
 	'tamton-aquib/staline.nvim',
 	'kyazdani42/nvim-web-devicons', -- file icons
 	'ms-jpq/chadtree', -- file tree
@@ -30,6 +30,7 @@ require "paq" {
     'sindrets/diffview.nvim', -- git diffs
     'theprimeagen/harpoon', -- file management
     'folke/trouble.nvim', -- error lens
+    'hrsh7th/cmp-nvim-lsp',
     {
         'kepano/flexoki-neovim', 
         as = 'flexoki',
