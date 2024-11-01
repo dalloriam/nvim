@@ -24,15 +24,24 @@ require "paq" {
 	'famiu/bufdelete.nvim', -- Buffer delete without screwing up window layout
 	'numtostr/FTerm.nvim', -- floating terminal
     'github/copilot.vim', -- github copilot
-    'lukas-reineke/indent-blankline.nvim', -- indent lines
+    {'lukas-reineke/indent-blankline.nvim', tag='v3.8.2'}, -- indent lines
     'kylechui/nvim-surround', -- surround
     'NeogitOrg/neogit', -- git
     'sindrets/diffview.nvim', -- git diffs
-    'theprimeagen/harpoon', -- file management
+    {
+        'theprimeagen/harpoon',
+        branch = 'harpoon2',
+        as = "harpoon"
+    },
     'folke/trouble.nvim', -- error lens
     'hrsh7th/cmp-nvim-lsp',
     {
         'kepano/flexoki-neovim', 
         as = 'flexoki',
-    } -- theme
+    }, -- theme
+    "loctvl842/monokai-pro.nvim",
+    "mfussenegger/nvim-dap",
+    'nvim-neotest/nvim-nio',
+    'rcarriga/nvim-dap-ui',
+    "SGauvin/ctest-telescope.nvim",
 }

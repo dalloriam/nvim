@@ -15,7 +15,7 @@ ts.setup {ensure_installed = "all", highlight = {enable = true}, sync_install = 
 -- LSP
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "clangd", "denols", "gopls", "ts_ls", "svelte"},
+    ensure_installed = { "lua_ls", "pyright", "denols", "gopls", "ts_ls", "svelte"},
 }
 
 local lsp = require('lspconfig')
@@ -107,3 +107,62 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+-- Setup debugging
+local dap = require('dap')
+local dapui = require("dapui")
+dapui.setup{}
+
+dap.adapters.codelldb = {
+  type = 'server',
+  port = "${port}",
+  executable = {
+    -- CHANGE THIS to your path!
+    command = 'codelldb',
+    args = {"--port", "${port}"},
+
+    -- On windows you may have to uncomment this:
+    -- detached = false,
+  }
+}
+
+dap.configurations.cpp = {
+    {
+        name = 'Launch',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+
+        -- 💀
+        -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+        --
+        --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+        --
+        -- Otherwise you might get the following error:
+        --
+        --    Error on launch: Failed to attach to the target process
+        --
+        -- But you should be aware of the implications:
+        -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+        -- runInTerminal = false,
+    },
+}
+
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
+
