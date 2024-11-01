@@ -14,8 +14,6 @@ require "paq" {
 	'tamton-aquib/staline.nvim',
 	'kyazdani42/nvim-web-devicons', -- file icons
 	'ms-jpq/chadtree', -- file tree
-	'rust-lang/rust.vim', -- rust tools
-	'nvim-lua/lsp_extensions.nvim', -- inlay hints for rust
 	'jiangmiao/auto-pairs', -- auto-close bracket pairs
 	'romgrk/barbar.nvim', -- tab bar
 	'sbdchd/neoformat', -- non-rust auto-formatting (mainly for clang-format)
@@ -44,4 +42,5 @@ require "paq" {
     'nvim-neotest/nvim-nio',
     'rcarriga/nvim-dap-ui',
     "SGauvin/ctest-telescope.nvim",
+    'mrcjkb/rustaceanvim',
 }

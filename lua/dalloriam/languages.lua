@@ -1,13 +1,3 @@
-require'lsp_extensions'.inlay_hints{
-	highlight = "Comment",
-	prefix = " > ",
-	aligned = false,
-	only_current_line = false,
-	enabled = { "ChainingHint" }
-}
-
-vim.cmd [[autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }]]
-
 -- tree-sitter
 local ts = require 'nvim-treesitter.configs'
 ts.setup {ensure_installed = "all", highlight = {enable = true}, sync_install = false}
@@ -19,7 +9,6 @@ require("mason-lspconfig").setup {
 }
 
 local lsp = require('lspconfig')
-lsp.rust_analyzer.setup{}
 lsp.clangd.setup{
     single_file_support = false
 }
@@ -126,6 +115,15 @@ dap.adapters.codelldb = {
   }
 }
 
+dap.configurations.rust = {
+    {
+        name = "Launch",
+        type = "codelldb",
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+    }
+}
+
 dap.configurations.cpp = {
     {
         name = 'Launch',
@@ -137,19 +135,6 @@ dap.configurations.cpp = {
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
         args = {},
-
-        -- 💀
-        -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-        --
-        --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-        --
-        -- Otherwise you might get the following error:
-        --
-        --    Error on launch: Failed to attach to the target process
-        --
-        -- But you should be aware of the implications:
-        -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-        -- runInTerminal = false,
     },
 }
 
