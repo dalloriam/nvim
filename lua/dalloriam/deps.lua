@@ -43,4 +43,7 @@ require "paq" {
     'rcarriga/nvim-dap-ui',
     "SGauvin/ctest-telescope.nvim",
     'mrcjkb/rustaceanvim',
+    'antoinemadec/FixCursorHold.nvim',
+    'nvim-neotest/neotest',
+    "sluongng/neotest-bazel"
 }
