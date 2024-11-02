@@ -151,3 +151,8 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+-- dap shortcuts
+-- toggle breakpoint
+vim.keymap.set("n", "<leader>db", function()
+    dap.toggle_breakpoint()
+end)

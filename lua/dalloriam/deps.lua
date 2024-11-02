@@ -45,5 +45,4 @@ require "paq" {
     'mrcjkb/rustaceanvim',
     'antoinemadec/FixCursorHold.nvim',
     'nvim-neotest/neotest',
-    "sluongng/neotest-bazel"
 }

@@ -13,7 +13,8 @@ ct.setup({
   },
 })
 
-vim.keymap.set("n", "<C-r>", function()
+-- debug ctest
+vim.keymap.set("n", "<leader>dc", function()
   local dap = require("dap")
   if dap.session() == nil and (vim.bo.filetype == "cpp" or vim.bo.filetype == "c") then
     -- Only call this on C++ and C files
