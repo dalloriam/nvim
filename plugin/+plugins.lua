@@ -23,6 +23,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/sbdchd/neoformat" },
     { src = "https://github.com/fatih/vim-go" },
+    { src = "https://github.com/olimorris/codecompanion.nvim" },
+    { src = "https://github.com/mrcjkb/rustaceanvim" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -91,3 +93,5 @@ ts.setup {
     highlight = {enable = true},
     sync_install = false
 }
+
+require("codecompanion").setup({})
