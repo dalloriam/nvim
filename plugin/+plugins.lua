@@ -24,7 +24,8 @@ vim.pack.add({
     { src = "https://github.com/sbdchd/neoformat" },
     { src = "https://github.com/fatih/vim-go" },
     { src = "https://github.com/olimorris/codecompanion.nvim" },
-    { src = "https://github.com/mrcjkb/rustaceanvim" }
+    { src = "https://github.com/mrcjkb/rustaceanvim" },
+    { src = "https://github.com/folke/trouble.nvim" }
 }, { load = true })
 
 require('gitsigns').setup({})
