@@ -3,7 +3,8 @@ require('mason-lspconfig').setup({
         "bashls",
         "gopls",
         "lua_ls",
-        "clangd"
+        "clangd",
+        "markdown_oxide",
     },
     automatic_enable = true
 })
@@ -15,3 +16,4 @@ lsp.bashls.setup({})
 lsp.gopls.setup({})
 lsp.lua_ls.setup({})
 lsp.clangd.setup({})
+
