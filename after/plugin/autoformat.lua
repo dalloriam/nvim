@@ -1,5 +1,5 @@
 -- neoformat settings for python
-vim.g.neoformat_enabled_python = { "black" }
+vim.g.neoformat_enabled_python = { "ruff" }
 vim.g.neoformat_python_black = {
   exe = "black",
   args = { "-q", "--line-length=100", "-" },

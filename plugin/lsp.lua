@@ -5,6 +5,8 @@ require('mason-lspconfig').setup({
         "lua_ls",
         "clangd",
         "markdown_oxide",
+        "pyright",
+        "ruff"
     },
     automatic_enable = true
 })
@@ -13,7 +15,6 @@ vim.diagnostic.config({ virtual_text = true })
 
 local lsp = require('lspconfig')
 lsp.bashls.setup({})
-lsp.gopls.setup({})
 lsp.lua_ls.setup({})
 lsp.clangd.setup({})
 
