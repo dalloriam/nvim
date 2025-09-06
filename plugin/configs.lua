@@ -38,4 +38,29 @@ vim.opt.termguicolors = true         -- True color support
 vim.opt.swapfile = false             -- Disable swap files
 vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
 
-vim.cmd.colorscheme("techbase")
+if vim.o.background == 'dark' then
+    print("dark")
+    vim.cmd("colorscheme techbase")
+    -- vim.cmd("colorscheme dracula")
+else
+    print('light')
+    vim.cmd("colorscheme newpaper")
+    -- vim.cmd("colorscheme gruvbox")
+end
+
+vim.api.nvim_create_autocmd({"OptionSet"}, {
+    pattern = {"background"},
+    callback = function(ev)
+        if vim.o.background == 'dark' then
+            print('late dark')
+            vim.cmd("colorscheme techbase")
+            -- vim.cmd("colorscheme dracula")
+        else
+            print('late light')
+            vim.cmd("colorscheme catppuccin")
+            -- vim.cmd("colorscheme gruvbox")
+        end
+        -- force a full redraw:
+        vim.cmd("mode")
+    end
+})

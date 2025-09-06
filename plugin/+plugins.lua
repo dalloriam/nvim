@@ -26,7 +26,8 @@ vim.pack.add({
     { src = "https://github.com/olimorris/codecompanion.nvim" },
     { src = "https://github.com/mrcjkb/rustaceanvim" },
     { src = "https://github.com/folke/trouble.nvim" },
-    { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"}
+    { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
+    { src = "https://github.com/catppuccin/nvim" },
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -69,10 +70,8 @@ require('blink.cmp').setup({
     },
 
     cmdline = {
-        keymap = {
-            preset = 'inherit',
-            ['<CR>'] = { 'accept_and_enter', 'fallback' },
-        },
+      keymap = { preset = 'inherit' },
+      completion = { menu = { auto_show = true } },
     },
 
     sources = { default = { "lsp" } }
@@ -97,3 +96,15 @@ ts.setup {
 }
 
 require("codecompanion").setup({})
+
+require('catppuccin').setup({
+    integrations = {
+        barbar = true,
+        gitsigns = true,
+        harpoon = true,
+        mason = true,
+        neogit = true,
+        telescope = true,
+    }
+})
+
