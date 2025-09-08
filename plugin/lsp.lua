@@ -6,7 +6,7 @@ require('mason-lspconfig').setup({
         "clangd",
         "markdown_oxide",
         "pyright",
-        "ruff"
+        "ruff",
     },
     automatic_enable = true
 })

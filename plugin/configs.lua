@@ -40,11 +40,11 @@ vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and 
 
 if vim.o.background == 'dark' then
     print("dark")
-    vim.cmd("colorscheme techbase")
+    vim.cmd("colorscheme tokyonight-storm")
     -- vim.cmd("colorscheme dracula")
 else
     print('light')
-    vim.cmd("colorscheme newpaper")
+    vim.cmd("colorscheme tokyonight-day")
     -- vim.cmd("colorscheme gruvbox")
 end
 
@@ -53,11 +53,11 @@ vim.api.nvim_create_autocmd({"OptionSet"}, {
     callback = function(ev)
         if vim.o.background == 'dark' then
             print('late dark')
-            vim.cmd("colorscheme techbase")
+            vim.cmd("colorscheme tokyonight-storm")
             -- vim.cmd("colorscheme dracula")
         else
             print('late light')
-            vim.cmd("colorscheme catppuccin")
+            vim.cmd("colorscheme tokyonight-day")
             -- vim.cmd("colorscheme gruvbox")
         end
         -- force a full redraw:

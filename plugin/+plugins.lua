@@ -27,7 +27,8 @@ vim.pack.add({
     { src = "https://github.com/mrcjkb/rustaceanvim" },
     { src = "https://github.com/folke/trouble.nvim" },
     { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
-    { src = "https://github.com/catppuccin/nvim" },
+    { src = "https://github.com/folke/tokyonight.nvim" },
+    { src = "https://github.com/kylechui/nvim-surround" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -96,15 +97,6 @@ ts.setup {
 }
 
 require("codecompanion").setup({})
+require("nvim-surround").setup({})
 
-require('catppuccin').setup({
-    integrations = {
-        barbar = true,
-        gitsigns = true,
-        harpoon = true,
-        mason = true,
-        neogit = true,
-        telescope = true,
-    }
-})
 
