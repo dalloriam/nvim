@@ -24,7 +24,7 @@ vim.opt.sidescrolloff = 3
 
 -- status line
 vim.opt.laststatus = 2  -- always show status line
-vim.opt.showtabline = 2 -- always show tab line
+vim.opt.showtabline = 0 -- always show tab line
 
 -- mouse config
 vim.opt.mouse = "a"                 -- mouse in all modes

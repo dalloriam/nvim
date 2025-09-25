@@ -15,7 +15,6 @@ vim.pack.add({
     { src = "https://github.com/mfussenegger/nvim-dap" },
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/romgrk/barbar.nvim" },
     { src = "https://github.com/famiu/bufdelete.nvim" },
     { src = "https://github.com/jiangmiao/auto-pairs" },
     { src = "https://github.com/NoahTheDuke/vim-just" },
@@ -28,7 +27,8 @@ vim.pack.add({
     { src = "https://github.com/folke/trouble.nvim" },
     { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
     { src = "https://github.com/folke/tokyonight.nvim" },
-    { src = "https://github.com/kylechui/nvim-surround" }
+    { src = "https://github.com/kylechui/nvim-surround" },
+    { src = "https://github.com/b0o/incline.nvim" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -87,8 +87,6 @@ require 'nvim-web-devicons'.setup {
 }
 
 
-require 'barbar'.setup {}
-
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust", "go", "cpp", "python", "javascript", "typescript", "html", "css", "bash", "json", "yaml", "toml", "dockerfile" },
@@ -99,4 +97,33 @@ ts.setup {
 require("codecompanion").setup({})
 require("nvim-surround").setup({})
 
+require("incline").setup({
+  window = {
+    margin = { vertical = 0, horizontal = 1 },
+    padding = 1,
+    placement = { horizontal = "right", vertical = "top" },
+    width = "fit",
+    winhighlight = {
+      active = { Normal = "Normal" },
+      inactive = { Normal = "NormalNC" },
+    },
+  },
+  render = function(props)
+    local devicons = require("nvim-web-devicons")
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+    if filename == "" then
+      filename = "[No Name]"
+    end
+    local ext = vim.fn.fnamemodify(filename, ":e")
+    local icon, color = devicons.get_icon_color(filename, ext, { default = true })
+
+    local modified = vim.bo[props.buf].modified and " ●" or ""
+
+    return {
+      { icon, guifg = color },       -- icon keeps its devicon color
+      { " " .. filename },            -- filename inherits theme
+      { modified, guifg = color },    -- optional: modified uses same color as icon
+    }
+  end,
+})
 
