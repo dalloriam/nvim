@@ -13,8 +13,7 @@ require('mason-lspconfig').setup({
 
 vim.diagnostic.config({ virtual_text = true })
 
-local lsp = require('lspconfig')
-lsp.bashls.setup({})
-lsp.lua_ls.setup({})
-lsp.clangd.setup({})
+vim.lsp.config("bashls", {})
+vim.lsp.config("lua_ls", {})
+vim.lsp.config("clangd", {})
 
