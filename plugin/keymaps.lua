@@ -22,10 +22,6 @@ map('n', '<leader>cs', '<cmd>Trouble symwide toggle focus=false<cr>')  -- Symbol
 map('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>')              -- Location List
 map('n', '<leader>xq', '<cmd>Trouble qflist toggle<cr>')               -- Quickfix List
 
--- tab controls
-map('n', 'gt', '<cmd>BufferNext<cr>')     -- next tab
-map('n', 'gT', '<cmd>BufferPrevious<cr>') -- previous tab
-
 -- buffers
 map('n', '<leader>w', '<cmd>Bdelete<cr>') -- close active buffer
 map('n', '<C-l>', '<cmd>winc l<cr>')      -- move to right window

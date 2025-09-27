@@ -28,7 +28,14 @@ vim.pack.add({
     { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
     { src = "https://github.com/folke/tokyonight.nvim" },
     { src = "https://github.com/kylechui/nvim-surround" },
-    { src = "https://github.com/b0o/incline.nvim" }
+    { src = "https://github.com/b0o/incline.nvim" },
+    { src = "https://github.com/nvim-neotest/nvim-nio" },
+    { src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
+    { src = "https://github.com/nvim-neotest/neotest" },
+    { src = "https://github.com/orjangj/neotest-ctest" },
+    { src = "https://github.com/mfussenegger/nvim-dap" },
+    { src = "https://github.com/rcarriga/nvim-dap-ui" },
+    { src = "https://github.com/SGauvin/ctest-telescope.nvim" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -74,7 +81,7 @@ require('blink.cmp').setup({
       completion = { menu = { auto_show = true } },
     },
 
-    sources = { default = { "lsp" } }
+    sources = { default = { "lsp", "path", "snippets", "buffer" } }
 })
 
 require('techbase').setup({})
