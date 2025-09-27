@@ -19,7 +19,7 @@ vim.pack.add({
     { src = "https://github.com/jiangmiao/auto-pairs" },
     { src = "https://github.com/NoahTheDuke/vim-just" },
     { src = "https://github.com/kylechui/nvim-surround" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/sbdchd/neoformat" },
     { src = "https://github.com/fatih/vim-go" },
     { src = "https://github.com/olimorris/codecompanion.nvim" },
@@ -35,7 +35,9 @@ vim.pack.add({
     { src = "https://github.com/orjangj/neotest-ctest" },
     { src = "https://github.com/mfussenegger/nvim-dap" },
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
-    { src = "https://github.com/SGauvin/ctest-telescope.nvim" }
+    { src = "https://github.com/SGauvin/ctest-telescope.nvim" },
+    { src = "https://github.com/fredrikaverpil/neotest-golang" },
+    { src = "https://github.com/leoluz/nvim-dap-go" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -93,12 +95,8 @@ require 'nvim-web-devicons'.setup {
 }
 
 
-local ts = require 'nvim-treesitter.configs'
-ts.setup {
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust", "go", "cpp", "python", "javascript", "typescript", "html", "css", "bash", "json", "yaml", "toml", "dockerfile" },
-    highlight = {enable = true},
-    sync_install = false
-}
+local ts = require('nvim-treesitter')
+ts.install({ "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust", "go", "cpp", "python", "javascript", "typescript", "html", "css", "bash", "json", "yaml", "toml", "dockerfile" })
 
 require("codecompanion").setup({})
 require("nvim-surround").setup({})

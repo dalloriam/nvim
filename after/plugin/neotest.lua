@@ -12,7 +12,10 @@ require("neotest").setup({
                     or name:match("^test_.*%.cpp$")
                     end,
         }),
-        require('rustaceanvim.neotest')
+        require('rustaceanvim.neotest'),
+        require('neotest-golang')({
+            go_test_args = {"-v"}
+        })
     },
 })
 
