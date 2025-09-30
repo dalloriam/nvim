@@ -5,17 +5,20 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 
 telescope.setup({
-  pickers = {
-    buffers = {
-      sort_lastused = true,
-      ignore_current_buffer = true,
-      attach_mappings = function(_, map)
-        map('i', '<C-d>', actions.delete_buffer)
-        map('n', '<C-d>', actions.delete_buffer)
-        return true
-      end,
+    file_ignore_patterns = {
+        "vcpkg/.*"
     },
-  },
+    pickers = {
+        buffers = {
+          sort_lastused = true,
+          ignore_current_buffer = true,
+          attach_mappings = function(_, map)
+            map('i', '<C-d>', actions.delete_buffer)
+            map('n', '<C-d>', actions.delete_buffer)
+            return true
+          end,
+        },
+    },
 })
 
 -- Keymap example: <leader>b to list all open buffers

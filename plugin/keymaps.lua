@@ -11,6 +11,7 @@ vim.g.mapleader = ' ' -- set leader key to spacebar
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>')      -- find files
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>')       -- find in files
 map('n', '<C-b>', '<cmd>Telescope lsp_definitions<cr>') -- go to definition
+map('n', '<C-o>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>') -- list symbols
 
 -- lsp
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
