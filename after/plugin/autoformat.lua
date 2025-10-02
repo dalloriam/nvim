@@ -2,7 +2,7 @@
 vim.g.neoformat_enabled_python = { "ruff" }
 vim.g.neoformat_python_black = {
   exe = "black",
-  args = { "-q", "--line-length=100", "-" },
+  args = { "-q", "--line-length=120", "-" },
   stdin = 1,
 }
 
