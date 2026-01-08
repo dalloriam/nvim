@@ -2,6 +2,9 @@ local dap = require('dap');
 local dapui = require('dapui')
 dapui.setup()
 
+-- Load launch.json configurations
+require('dap.ext.vscode').load_launchjs()
+
 dap.adapters.codelldb = {
   type = 'server',
   port = "${port}",
@@ -9,6 +12,15 @@ dap.adapters.codelldb = {
     command = 'codelldb',
     args = {"--port", "${port}"},
   }
+}
+
+dap.adapters.go = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = "dlv",
+    args = { "dap", "-l", "127.0.0.1:${port}" },
+  },
 }
 
 dap.configurations.rust = {
@@ -35,6 +47,16 @@ dap.configurations.cpp = {
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
     }
+}
+
+dap.configurations.go = {
+  {
+    type = "go",
+    name = "Debug package",
+    request = "launch",
+    program = '${fileDirName}',
+    cwd = '${fileDirName}',
+  },
 }
 
 dap.listeners.before.attach.dapui_config = function()
