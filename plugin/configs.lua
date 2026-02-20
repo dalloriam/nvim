@@ -39,11 +39,9 @@ vim.opt.swapfile = false             -- Disable swap files
 vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
 
 if vim.o.background == 'dark' then
-    print("dark")
     vim.cmd("colorscheme tokyonight-storm")
     -- vim.cmd("colorscheme dracula")
 else
-    print('light')
     vim.cmd("colorscheme tokyonight-day")
     -- vim.cmd("colorscheme gruvbox")
 end
@@ -52,11 +50,9 @@ vim.api.nvim_create_autocmd({"OptionSet"}, {
     pattern = {"background"},
     callback = function(ev)
         if vim.o.background == 'dark' then
-            print('late dark')
             vim.cmd("colorscheme tokyonight-storm")
             -- vim.cmd("colorscheme dracula")
         else
-            print('late light')
             vim.cmd("colorscheme tokyonight-day")
             -- vim.cmd("colorscheme gruvbox")
         end
@@ -67,3 +63,5 @@ vim.api.nvim_create_autocmd({"OptionSet"}, {
 
 vim.opt.exrc = true  -- Enable reading local config files
 vim.opt.secure = true  -- Prevent unsafe commands in local configs
+
+vim.opt.undofile = true

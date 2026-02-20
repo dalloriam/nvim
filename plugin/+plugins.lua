@@ -14,9 +14,10 @@ vim.pack.add({
     { src = "https://github.com/numtostr/FTerm.nvim" },
     { src = "https://github.com/mfussenegger/nvim-dap" },
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
+    { src = "https://github.com/leoluz/nvim-dap-go" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/famiu/bufdelete.nvim" },
-    { src = "https://github.com/jiangmiao/auto-pairs" },
+    { src = "https://github.com/windwp/nvim-autopairs" },
     { src = "https://github.com/NoahTheDuke/vim-just" },
     { src = "https://github.com/kylechui/nvim-surround" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
@@ -27,17 +28,12 @@ vim.pack.add({
     { src = "https://github.com/folke/trouble.nvim" },
     { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
     { src = "https://github.com/folke/tokyonight.nvim" },
-    { src = "https://github.com/kylechui/nvim-surround" },
     { src = "https://github.com/b0o/incline.nvim" },
     { src = "https://github.com/nvim-neotest/nvim-nio" },
-    { src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
     { src = "https://github.com/nvim-neotest/neotest" },
     { src = "https://github.com/orjangj/neotest-ctest" },
-    { src = "https://github.com/mfussenegger/nvim-dap" },
-    { src = "https://github.com/rcarriga/nvim-dap-ui" },
     { src = "https://github.com/SGauvin/ctest-telescope.nvim" },
     { src = "https://github.com/fredrikaverpil/neotest-golang" },
-    { src = "https://github.com/leoluz/nvim-dap-go" },
     { src = "https://github.com/nvimdev/indentmini.nvim" },
     { src = "https://github.com/fresh2dev/zellij.vim" }
 }, { load = true })
@@ -134,4 +130,5 @@ require("incline").setup({
 })
 
 require("indentmini").setup()
+require("nvim-autopairs").setup({})
 
