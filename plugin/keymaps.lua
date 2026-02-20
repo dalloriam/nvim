@@ -25,10 +25,20 @@ map('n', '<leader>xq', '<cmd>Trouble qflist toggle<cr>')               -- Quickf
 
 -- buffers
 map('n', '<leader>w', '<cmd>Bdelete<cr>') -- close active buffer
-map('n', '<C-l>', '<cmd>winc l<cr>')      -- move to right window
-map('n', '<C-h>', '<cmd>winc h<cr>')      -- move to left window
-map('n', '<C-j>', '<cmd>winc j<cr>')      -- move to bottom window
-map('n', '<C-k>', '<cmd>winc k<cr>')      -- move to top window
+
+-- Map to Zellij move if Zellij is running, otherwise use default window movement
+
+if vim.env.ZELLIJ_PANE_ID then
+    map('n', '<C-l>', '<cmd>ZellijNavigateRight<cr>')      -- move to right window
+    map('n', '<C-h>', '<cmd>ZellijNavigateLeft<cr>')      -- move to left window
+    map('n', '<C-j>', '<cmd>ZellijNavigateDown<cr>')      -- move to bottom window
+    map('n', '<C-k>', '<cmd>ZellijNavigateUp<cr>')      -- move to top window
+else
+    map('n', '<C-l>', '<cmd>winc l<cr>')      -- move to right window
+    map('n', '<C-h>', '<cmd>winc h<cr>')      -- move to left window
+    map('n', '<C-j>', '<cmd>winc j<cr>')      -- move to bottom window
+    map('n', '<C-k>', '<cmd>winc k<cr>')      -- move to top window
+end
 
 -- yank
 map('n', '<leader>y', '"+y') -- copy to clipboard

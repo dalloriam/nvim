@@ -38,7 +38,8 @@ vim.pack.add({
     { src = "https://github.com/SGauvin/ctest-telescope.nvim" },
     { src = "https://github.com/fredrikaverpil/neotest-golang" },
     { src = "https://github.com/leoluz/nvim-dap-go" },
-    { src = "https://github.com/nvimdev/indentmini.nvim" }
+    { src = "https://github.com/nvimdev/indentmini.nvim" },
+    { src = "https://github.com/fresh2dev/zellij.vim" }
 }, { load = true })
 
 require('gitsigns').setup({})

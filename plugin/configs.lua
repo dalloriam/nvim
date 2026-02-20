@@ -64,3 +64,6 @@ vim.api.nvim_create_autocmd({"OptionSet"}, {
         vim.cmd("mode")
     end
 })
+
+vim.opt.exrc = true  -- Enable reading local config files
+vim.opt.secure = true  -- Prevent unsafe commands in local configs
