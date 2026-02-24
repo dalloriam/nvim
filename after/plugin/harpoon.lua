@@ -25,11 +25,11 @@ harpoon.setup({
       end
 
       local cols = vim.o.columns
-      local float = cols < 200
+      local float = cols < 180
 
       local args = { "run", "--name", cmd }
 
-      if false then
+      if float then
         local width, height = "90%", "80%"
         local x, y = centered_xy(width, height)
 
