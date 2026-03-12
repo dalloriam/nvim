@@ -35,7 +35,8 @@ vim.pack.add({
     { src = "https://github.com/SGauvin/ctest-telescope.nvim" },
     { src = "https://github.com/fredrikaverpil/neotest-golang" },
     { src = "https://github.com/nvimdev/indentmini.nvim" },
-    { src = "https://github.com/fresh2dev/zellij.vim" }
+    { src = "https://github.com/fresh2dev/zellij.vim" },
+    { src = "https://github.com/4e554c4c/darkman.nvim", build = "go build -o bin/darkman.nvim" }
 }, { load = true })
 
 require('gitsigns').setup({})
@@ -131,4 +132,5 @@ require("incline").setup({
 
 require("indentmini").setup()
 require("nvim-autopairs").setup({})
+require("darkman").setup({ change_background = true })
 

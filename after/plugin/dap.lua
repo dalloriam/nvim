@@ -2,9 +2,6 @@ local dap = require('dap');
 local dapui = require('dapui')
 dapui.setup()
 
--- Load launch.json configurations
-require('dap.ext.vscode').load_launchjs()
-
 dap.adapters.codelldb = {
   type = 'server',
   port = "${port}",

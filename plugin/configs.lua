@@ -65,3 +65,6 @@ vim.opt.exrc = true  -- Enable reading local config files
 vim.opt.secure = true  -- Prevent unsafe commands in local configs
 
 vim.opt.undofile = true
+
+vim.o.shell ="/bin/bash" -- Running external commands through a non-POSIX shell can cause issues.
+vim.o.shellcmdflag = "-c" 
