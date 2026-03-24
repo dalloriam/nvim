@@ -1,3 +1,6 @@
+-- use prettier for yaml to avoid pyaml/PyYAML YAML 1.1 yes/no booleans
+vim.g.neoformat_enabled_yaml = { "prettier" }
+
 -- neoformat settings for python
 vim.g.neoformat_enabled_python = { "ruff" }
 vim.g.neoformat_python_black = {
