@@ -17,3 +17,5 @@ vim.diagnostic.config({ virtual_text = true })
 vim.lsp.config("bashls", {})
 vim.lsp.config("lua_ls", {})
 vim.lsp.enable("nushell")
+
+vim.lsp.inlay_hint.enable(true)
