@@ -14,6 +14,31 @@ function M.active()
     return M.is_zellij() or M.is_tmux()
 end
 
+-- Wrap a shell command string so the pane it runs in doesn't just vanish
+-- when the command finishes (both tmux and zellij close panes as soon as
+-- their child process exits). After `cmd` exits:
+--   <Enter>  reruns the command
+--   <Esc>    drops to an interactive shell in the pane
+--   <C-c>    sends SIGINT while we're waiting on input, which (uncaught)
+--            kills this wrapper script and lets the pane close as usual
+function M.rerunnable(cmd)
+    return string.format([[
+while true; do
+  %s
+  status=$?
+  printf '\n[harpoon] exited (%%d) \xe2\x80\x94 <Enter> rerun, <Esc> shell, <C-c> close\n' "$status"
+  while true; do
+    IFS= read -rsn1 key
+    if [ -z "$key" ]; then
+      break
+    elif [ "$key" = "$(printf '\033')" ]; then
+      exec "${SHELL:-bash}"
+    fi
+  done
+done
+]], cmd)
+end
+
 -- Run `cmd` (a list, e.g. {"claude", "--foo"}) in a new pane/window.
 -- opts:
 --   cwd       working directory (default: vim.loop.cwd())

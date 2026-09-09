@@ -16,7 +16,7 @@ harpoon.setup({
 
       local float = vim.o.columns < 180
 
-      mux.spawn({ "sh", "-lc", cmd }, {
+      mux.spawn({ "bash", "-lc", mux.rerunnable(cmd) }, {
         name = cmd,
         floating = float,
         direction = "right",
