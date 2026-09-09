@@ -3,46 +3,24 @@ local fterm = require('FTerm')
 local dap = require('dap')
 
 
-local function centered_xy(width_pct, height_pct)
-  -- width_pct/height_pct are strings like "90%"
-  local w = tonumber(width_pct:match("^(%d+)%s*%%$"))
-  local h = tonumber(height_pct:match("^(%d+)%s*%%$"))
-  if not w or not h then
-    return nil, nil
-  end
-  return string.format("%d%%", math.floor((100 - w) / 2)),
-         string.format("%d%%", math.floor((100 - h) / 2))
-end
-
 harpoon.setup({
   settings = { save_on_toggle = true },
   cmd = {
     select = function(list_item, list, option)
       local cmd = list_item.value
+      local mux = require('multiplexer')
 
-      if not vim.env.ZELLIJ_PANE_ID then
+      if not mux.active() then
         return fterm.scratch({ cmd = cmd, auto_close = true })
       end
 
-      local cols = vim.o.columns
-      local float = cols < 180
+      local float = vim.o.columns < 180
 
-      local args = { "run", "--name", cmd }
-
-      if float then
-        local width, height = "90%", "80%"
-        local x, y = centered_xy(width, height)
-
-        vim.list_extend(args, { "--floating", "--width", width, "--height", height })
-        if x and y then
-          vim.list_extend(args, { "--x", x, "--y", y })
-        end
-      else
-        vim.list_extend(args, { "--direction", "right" })
-      end
-
-      vim.list_extend(args, { "--", "sh", "-lc", cmd })
-      vim.system(vim.list_extend({ "zellij" }, args), { detach = true })
+      mux.spawn({ "sh", "-lc", cmd }, {
+        name = cmd,
+        floating = float,
+        direction = "right",
+      })
     end,
   },
 })

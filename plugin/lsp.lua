@@ -5,7 +5,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"clangd",
 		"markdown_oxide",
-		"pyright",
+		"basedpyright",
 		"ruff",
 		"starpls",
 		"stylua",

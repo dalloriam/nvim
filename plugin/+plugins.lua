@@ -1,3 +1,7 @@
+-- keymaps.lua defines Ctrl-hjkl itself (branching on zellij/tmux/plain), so
+-- don't let vim-tmux-navigator also bind its defaults.
+vim.g.tmux_navigator_no_mappings = 1
+
 vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -36,6 +40,7 @@ vim.pack.add({
     { src = "https://github.com/fredrikaverpil/neotest-golang" },
     { src = "https://github.com/nvimdev/indentmini.nvim" },
     { src = "https://github.com/fresh2dev/zellij.vim" },
+    { src = "https://github.com/christoomey/vim-tmux-navigator" },
     { src = "https://github.com/4e554c4c/darkman.nvim", build = "go build -o bin/darkman.nvim" }
 }, { load = true })
 

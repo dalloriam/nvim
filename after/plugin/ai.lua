@@ -1,12 +1,10 @@
 -- Just task runner support
-local function run_ai(runner, opts) 
-    local cmd = {
-        "zellij", "action", "new-pane", "-c",
-        "--cwd", vim.loop.cwd(),
-        "--", runner,
-    }
+local mux = require('multiplexer')
+
+local function run_ai(runner, opts)
+    local cmd = { runner }
     vim.list_extend(cmd, opts.fargs or {})
-    vim.system(cmd, { detach = true })
+    mux.spawn(cmd)
 end
 
 local function claude(opts)

@@ -11,12 +11,9 @@ vim.api.nvim_create_user_command('Just', run_just, { nargs = "+" })
 
 -- Terminal Keymaps
  vim.keymap.set("n", "<leader>t", function()
-  if vim.env.ZELLIJ_PANE_ID then
-    vim.system({
-      "zellij", "action", "new-pane", "-c",
-      "--cwd", vim.loop.cwd(),
-      "--", vim.env.SHELL
-    }, { detach = true })
+  local mux = require('multiplexer')
+  if mux.active() then
+    mux.spawn({ vim.env.SHELL })
   else
     fterm.toggle()
   end

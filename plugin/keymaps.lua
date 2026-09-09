@@ -26,13 +26,24 @@ map('n', '<leader>xq', '<cmd>Trouble qflist toggle<cr>')               -- Quickf
 -- buffers
 map('n', '<leader>w', '<cmd>Bdelete<cr>') -- close active buffer
 
--- Map to Zellij move if Zellij is running, otherwise use default window movement
+-- Map to the active multiplexer's pane navigation, otherwise default window movement.
+-- tmux's own tmux.conf snippet only knows "is this pane running vim" — it can't tell
+-- when nvim is at its last split and should hand off to a tmux pane, so that edge case
+-- needs vim-tmux-navigator on this side (it falls back to `tmux select-pane` when the
+-- window doesn't change).
 
-if vim.env.ZELLIJ_PANE_ID then
+local mux = require('multiplexer')
+
+if mux.is_zellij() then
     map('n', '<C-l>', '<cmd>ZellijNavigateRight<cr>')      -- move to right window
     map('n', '<C-h>', '<cmd>ZellijNavigateLeft<cr>')      -- move to left window
     map('n', '<C-j>', '<cmd>ZellijNavigateDown<cr>')      -- move to bottom window
     map('n', '<C-k>', '<cmd>ZellijNavigateUp<cr>')      -- move to top window
+elseif mux.is_tmux() then
+    map('n', '<C-l>', '<cmd>TmuxNavigateRight<cr>')      -- move to right window
+    map('n', '<C-h>', '<cmd>TmuxNavigateLeft<cr>')      -- move to left window
+    map('n', '<C-j>', '<cmd>TmuxNavigateDown<cr>')      -- move to bottom window
+    map('n', '<C-k>', '<cmd>TmuxNavigateUp<cr>')      -- move to top window
 else
     map('n', '<C-l>', '<cmd>winc l<cr>')      -- move to right window
     map('n', '<C-h>', '<cmd>winc h<cr>')      -- move to left window
