@@ -93,17 +93,50 @@ local function fade_highlights(style)
 		vim.api.nvim_set_hl(0, "LspInlayHint", { fg = blend(inlay.fg, bg, 0.55), bg = "none", italic = true })
 	end
 
-	-- Soften diagnostic virtual text backgrounds instead of removing them outright,
-	-- keep the foreground text color as-is.
-	for _, group in ipairs({
-		"DiagnosticVirtualTextError",
-		"DiagnosticVirtualTextWarn",
-		"DiagnosticVirtualTextInfo",
-		"DiagnosticVirtualTextHint",
-	}) do
+	-- Dim the base diagnostic colors (used by signs, underlines' sp fallback,
+	-- floating windows, etc). Error is toned down more than Warn so red -- which
+	-- reads hotter than orange to begin with -- doesn't end up louder overall.
+	local base_alphas = {
+		DiagnosticError = 0.75,
+		DiagnosticWarn = 0.85,
+		DiagnosticInfo = 0.9,
+		DiagnosticHint = 0.9,
+	}
+	for group, alpha in pairs(base_alphas) do
 		local hl = vim.api.nvim_get_hl(0, { name = group })
-		if hl.bg then
-			vim.api.nvim_set_hl(0, group, { fg = hl.fg, bg = blend(hl.bg, bg, 0.35) })
+		if hl.fg then
+			vim.api.nvim_set_hl(0, group, { fg = blend(hl.fg, bg, alpha) })
+		end
+	end
+
+	-- Same treatment for the squiggly underlines (their color lives in `sp`).
+	local underline_alphas = {
+		DiagnosticUnderlineError = 0.55,
+		DiagnosticUnderlineWarn = 0.65,
+		DiagnosticUnderlineInfo = 0.7,
+		DiagnosticUnderlineHint = 0.7,
+	}
+	for group, alpha in pairs(underline_alphas) do
+		local hl = vim.api.nvim_get_hl(0, { name = group })
+		if hl.sp then
+			hl.sp = blend(hl.sp, bg, alpha)
+			hl.link = nil
+			vim.api.nvim_set_hl(0, group, hl)
+		end
+	end
+
+	-- Soften diagnostic virtual text foreground (Error dimmed more than Warn)
+	-- and always drop the background tint entirely.
+	local vt_alphas = {
+		DiagnosticVirtualTextError = 0.55,
+		DiagnosticVirtualTextWarn = 0.65,
+		DiagnosticVirtualTextInfo = 0.7,
+		DiagnosticVirtualTextHint = 0.7,
+	}
+	for group, alpha in pairs(vt_alphas) do
+		local hl = vim.api.nvim_get_hl(0, { name = group })
+		if hl.fg then
+			vim.api.nvim_set_hl(0, group, { fg = blend(hl.fg, bg, alpha), bg = "none" })
 		end
 	end
 end

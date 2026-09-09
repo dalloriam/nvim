@@ -18,7 +18,7 @@ end
 -- opts:
 --   cwd       working directory (default: vim.loop.cwd())
 --   name      pane title (zellij only; tmux has no per-pane title for this)
---   floating  open as a floating pane (zellij) / popup (tmux)
+--   floating  open as a floating pane (zellij only; tmux always splits)
 --   width, height  size when floating, e.g. "90%"
 --   direction "right" (default) or "down" when not floating
 function M.spawn(cmd, opts)
@@ -46,19 +46,10 @@ function M.spawn(cmd, opts)
     end
 
     if M.is_tmux() then
-        if opts.floating then
-            local args = {
-                "tmux", "display-popup", "-E", "-d", cwd,
-                "-w", opts.width or "90%", "-h", opts.height or "80%", "--",
-            }
-            vim.list_extend(args, cmd)
-            vim.system(args, { detach = true })
-        else
-            local flag = (opts.direction == "down") and "-v" or "-h"
-            local args = { "tmux", "split-window", flag, "-c", cwd, "--" }
-            vim.list_extend(args, cmd)
-            vim.system(args, { detach = true })
-        end
+        local flag = (opts.direction == "down") and "-v" or "-h"
+        local args = { "tmux", "split-window", flag, "-c", cwd, "--" }
+        vim.list_extend(args, cmd)
+        vim.system(args, { detach = true })
         return
     end
 
