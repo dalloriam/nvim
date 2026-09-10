@@ -84,7 +84,7 @@ function Statusline.active()
 end
 
 function Statusline.inactive()
-	return " %t"
+	return " %t "
 end
 
 function Statusline.toggle_path()

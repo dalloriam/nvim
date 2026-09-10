@@ -24,6 +24,9 @@ vim.opt.sidescrolloff = 3
 
 -- status line
 vim.opt.laststatus = 2 -- always show status line
+-- The statusline is the only divider between stacked splits, and its highlights
+-- are cleared for transparency below -- draw it as a rule so hsplits stay distinct.
+vim.opt.fillchars:append({ stl = "─", stlnc = "─" })
 vim.opt.showtabline = 0 -- always show tab line
 
 -- mouse config
@@ -141,14 +144,28 @@ local function fade_highlights(style)
 	end
 end
 
+-- tokyonight draws inline `code` as blue on terminal_black, which is ~3.5:1 in
+-- storm and ~1.7:1 in day. Move it onto the subtler bg_dark box, and darken the
+-- blue in day since nothing in that palette clears 4.5:1 as-is.
+local function readable_inline_code(style)
+	local c = require("tokyonight.colors").setup({ style = style })
+	local fg = c.blue
+	if style == "day" then
+		fg = blend(tonumber(fg:sub(2), 16), 0, 0.7)
+	end
+	vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { fg = fg, bg = c.bg_dark })
+end
+
 if vim.o.background == "dark" then
 	vim.cmd("colorscheme tokyonight-storm")
 	-- vim.cmd("colorscheme dracula")
 	fade_highlights("storm")
+	readable_inline_code("storm")
 else
 	vim.cmd("colorscheme tokyonight-day")
 	-- vim.cmd("colorscheme gruvbox")
 	fade_highlights("day")
+	readable_inline_code("day")
 end
 clear_bg_highlights()
 
@@ -159,10 +176,12 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
 			vim.cmd("colorscheme tokyonight-storm")
 			-- vim.cmd("colorscheme dracula")
 			fade_highlights("storm")
+			readable_inline_code("storm")
 		else
 			vim.cmd("colorscheme tokyonight-day")
 			-- vim.cmd("colorscheme gruvbox")
 			fade_highlights("day")
+			readable_inline_code("day")
 		end
 		clear_bg_highlights()
 		-- force a full redraw:
