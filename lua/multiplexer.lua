@@ -17,13 +17,14 @@ end
 -- Wrap a shell command string so the pane it runs in doesn't just vanish
 -- when the command finishes (both tmux and zellij close panes as soon as
 -- their child process exits). After `cmd` exits:
---   <Enter>  reruns the command
---   <Esc>    drops to an interactive shell in the pane
+--   <Enter>  clears the screen and reruns the command
+--   <Esc>    clears the screen and drops to an interactive shell in the pane
 --   <C-c>    sends SIGINT while we're waiting on input, which (uncaught)
 --            kills this wrapper script and lets the pane close as usual
 function M.rerunnable(cmd)
     return string.format([[
 while true; do
+  clear
   %s
   status=$?
   printf '\n[harpoon] exited (%%d) \xe2\x80\x94 <Enter> rerun, <Esc> shell, <C-c> close\n' "$status"
@@ -32,6 +33,7 @@ while true; do
     if [ -z "$key" ]; then
       break
     elif [ "$key" = "$(printf '\033')" ]; then
+      clear
       exec "${SHELL:-bash}"
     fi
   done
